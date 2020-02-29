@@ -15,14 +15,14 @@ namespace ConnectionSearcher
     public static class ConnectionSearcherDatabaseReader
     {
         //Path = "C:\\Users\\Mateus\\Desktop\\Programowanie\\PROJEKTKOLEJE\\connectionDB.txt"
-        public static void ReadConnections(string destPath, out List<Station> stations)
+        public static List<Station> ReadConnections(string destPath)
         //The function which reads from destPath into stations.
         //The data presented in the file represented in destPath is serialized with binary formatter.
         {
             IFormatter formatter = new BinaryFormatter();
             Stream stream = new FileStream(destPath, FileMode.Open, FileAccess.Read);
             ConnectionDBUpdater.Connection c;
-            stations = new List<Station>();
+            List<Station> stations = new List<Station>();
             while (stream.Position < stream.Length)
             {
                 c = (ConnectionDBUpdater.Connection)formatter.Deserialize(stream);//Read a connection
@@ -35,6 +35,7 @@ namespace ConnectionSearcher
                 }
             }
             stream.Close();
+            return stations;
         }
 
         private static void FindTheStations(out Station s, out Station d, int sID, int dID, List<Station> currentStations)

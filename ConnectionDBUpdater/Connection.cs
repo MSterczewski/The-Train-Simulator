@@ -14,18 +14,19 @@ namespace ConnectionDBUpdater
     {
         public int connectionID;//stores the ID of connection
         public int[] stations;//stores stationsIDs
-        public Connection(int _connectionID, int[] _stations)
+        public int[] connectionValues;
+        public Connection(int _connectionID, int[] _stations, int[] _connectionValues)
         {
             connectionID = _connectionID;
             stations = new int[_stations.Length];
-            int it = 0;
-            foreach (int i in _stations)
+            connectionValues = new int[_connectionValues.Length];
+            for (int i = 0; i < _connectionValues.Length; i++)
             {
-                stations[it] = _stations[it];
-                it++;
+                stations[i] = _stations[i];
+                connectionValues[i] = _connectionValues[i];
             }
+            stations[_stations.Length - 1] = _stations[_stations.Length - 1];
         }
-            //this as well
         public static void ReadConnectionsFromFile(string destPath, out List<Connection> connectionList)
             //Function which will read all the connections from the destPath and put it into the conneciton
             //Function uses serialization by binary formatter
@@ -42,9 +43,6 @@ namespace ConnectionDBUpdater
             }
             stream.Close();
         }
-        
-        
-        //Change it from out parameter into return
         public static void WriteConnectionToFile(string destPath, Connection connection)
             //Function that writes a Conneciton into the file represented by destPath
             //Function uses serialization by binary formatter
@@ -57,8 +55,11 @@ namespace ConnectionDBUpdater
 
         }
         public static Connection  ReadConnectionFromConsole()
-            //Function which reads the connection from the console and puts it in the out parameter
+            //Function which reads the connection from the console and puts it in the return parameter
+            //To do: Error control and suggested ID
         {
+            Console.Clear();
+            Console.WriteLine("Suggested connection ID:\n");//to do!!!
             Console.WriteLine("Please write connection ID");
             string line = Console.ReadLine();
             int ID = int.Parse(line);
@@ -66,12 +67,21 @@ namespace ConnectionDBUpdater
             Console.WriteLine("A B C D   (which means the connection A->B->C->D");
             string s = Console.ReadLine();
             List<int> stationsInList = new List<int>();
+            List<int> connectionValuesInList = new List<int>();
             foreach (string subs in s.Split(' '))
             {
                 int i = int.Parse(subs);
                 stationsInList.Add(i);
             }
-            return new Connection(ID, stationsInList.ToArray());
+            Console.WriteLine("Please write the connection costs in the format of:");
+            Console.WriteLine("1 3 2   (which means the connection costs A->B = 1, B->C = 3, C->D = 2");
+            s = Console.ReadLine();
+            foreach (string subs in s.Split(' '))
+            {
+                int i = int.Parse(subs);
+                connectionValuesInList.Add(i);
+            }
+            return new Connection(ID, stationsInList.ToArray(),connectionValuesInList.ToArray());
         }
         public static void PrintTheConnectionToConsole(Connection connection)
             //Funtion that prints a connection on the console
