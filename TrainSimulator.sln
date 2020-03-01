@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConnectionDBUpdater", "Conn
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConnectionSearcher", "ConnectionSearcher\ConnectionSearcher.csproj", "{CD657436-0F76-495A-9A50-83F29B4D2EBF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graphs", "Graphs\Graphs.csproj", "{44A1C698-3B82-4796-B3ED-7F22321910ED}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{CD657436-0F76-495A-9A50-83F29B4D2EBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CD657436-0F76-495A-9A50-83F29B4D2EBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CD657436-0F76-495A-9A50-83F29B4D2EBF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44A1C698-3B82-4796-B3ED-7F22321910ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44A1C698-3B82-4796-B3ED-7F22321910ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44A1C698-3B82-4796-B3ED-7F22321910ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44A1C698-3B82-4796-B3ED-7F22321910ED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

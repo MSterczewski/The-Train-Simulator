@@ -1,0 +1,145 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
+using System.IO.Compression;
+
+namespace Graphs
+{
+    /*
+     * Represents a directed graph
+     * 
+     * Contains:
+     *  - a list of Nodes (see: Node.cs) implemented as a dictionary, 
+     *    to allow comfortable operation with Node ID's
+     *  
+     * Implements:
+     *  - adding unconnected or already connected nodes to itself 
+     *  - adding edges between existing nodes
+     *  - getting a node by it's ID
+     *  - serializing itself into a string/file
+     *  - creation of Graph objects from string/file
+     *  
+     */
+
+    [Serializable]
+    public class Graph
+    {
+        Dictionary<int, Node> Nodes;
+
+        public int Vertices { get => Nodes.Count; }
+
+        // Directional edges, when working with effectively
+        // non-directional graphs - divide by two
+        public int Edges { get; private set; } = 0;
+
+
+        public Graph()
+        {
+            this.Nodes = new Dictionary<int, Node>();
+        }
+
+
+        public Graph(IEnumerable<Node> InitialNodes)
+        {
+            this.Nodes = new Dictionary<int, Node>();
+
+            foreach (Node N in InitialNodes)
+            {
+                this.Nodes[N.Id] = N;
+                this.Edges += N.Degree;
+            }
+        }
+
+        /*
+         * Serialization procedure:
+         *  - BinarySerialize itself
+         *  - compress the binary as good as possible
+         *  - encode the compressed data as a Base64 string
+         *  
+         * Deserialization: properly reverse the above
+         * 
+         * Implemented with streams on top of streams.
+         * 
+         */
+
+        public static Graph FromString(string Representation)
+        {
+            byte[] raw = Convert.FromBase64String(Representation);
+
+            var mems = new MemoryStream(raw);
+            var defs = new DeflateStream(mems, CompressionMode.Decompress);
+
+            BinaryFormatter bf = new BinaryFormatter();
+            Graph g = (Graph)bf.Deserialize(defs);
+
+            defs.Close();
+            mems.Close();
+            return g;
+        }
+
+
+        public static Graph FromFile(string Path)
+        {
+            var file = new StreamReader(Path);
+            string s64 = file.ReadToEnd();
+
+            file.Close();
+            return Graph.FromString(s64);
+        }
+
+
+        public override string ToString()
+        {
+            var mems = new MemoryStream();
+            var defs = new DeflateStream(mems, CompressionLevel.Optimal);
+
+            BinaryFormatter bf = new BinaryFormatter();
+            bf.Serialize(defs, this);
+
+            byte[] bytes = mems.ToArray();
+            return Convert.ToBase64String(bytes);
+        }
+
+
+        public void SaveToFile(string Path)
+        {
+            var file = File.Open(Path, FileMode.Create);
+
+            byte[] data = System.Text.Encoding.ASCII.GetBytes(this.ToString());
+
+            file.Write(data, 0, data.Length);
+            file.Close();
+        }
+
+        /*
+         * Mindset: Don't check for possible exceptions only to throw them manually
+         *          when an invalid operation will throw the exception for you.
+         *          
+         */
+
+        public void AddNode(Node N)
+        { this.Nodes[N.Id] = N; }
+
+
+        public Node GetNode(int NodeId)
+            => this.Nodes[NodeId];
+
+
+        public void AddEdge(Edge E, bool Bidirectional = true)
+        {
+            this.Nodes[E.Source].AddNeighbour(E.Destination, E.Color, E.Weight);
+            this.Edges++;
+
+            if (Bidirectional)
+            {
+                this.Nodes[E.Destination].AddNeighbour(E.Source, E.Color, E.Weight);
+                this.Edges++;
+            }
+        }
+
+
+        public IEnumerator<KeyValuePair<int, Node>> GetEnumerator()
+            => this.Nodes.GetEnumerator();
+    }
+}

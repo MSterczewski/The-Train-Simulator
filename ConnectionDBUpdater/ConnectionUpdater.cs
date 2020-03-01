@@ -67,7 +67,8 @@ namespace ConnectionDBUpdater
             //Function that writes a connection from console to the file presented by path
             //Note for later: check errors
         {
-            Connection connection = Connection.ReadConnectionFromConsole();
+            Connection connection = ConnectionConsoleReader.ReadConnectionFromConsole();
+            //Connection connection = Connection.ReadConnectionFromConsole(0);
             Connection.WriteConnectionToFile(path, connection);
         }
         private static void ContinueWorking(string path)

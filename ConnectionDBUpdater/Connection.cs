@@ -54,15 +54,33 @@ namespace ConnectionDBUpdater
             stream.Close();
 
         }
-        public static Connection  ReadConnectionFromConsole()
+        public static Connection  ReadConnectionFromConsole(ref int connectionID,ref List<int> listOfConnectionIDs)
             //Function which reads the connection from the console and puts it in the return parameter
             //To do: Error control and suggested ID
         {
             Console.Clear();
-            Console.WriteLine("Suggested connection ID:\n");//to do!!!
+            Console.WriteLine("Suggested connection ID: "+connectionID);//to do!!!
             Console.WriteLine("Please write connection ID");
             string line = Console.ReadLine();
             int ID = int.Parse(line);
+            if(ID==connectionID)
+            {
+                //not working!!!!
+                connectionID++;
+                
+            }
+            else
+            {
+                if(listOfConnectionIDs.Contains(ID))
+                {
+                    //INPUT ERROR
+                    return ReadConnectionFromConsole(ref connectionID, ref listOfConnectionIDs);
+                }
+                else
+                {
+                    listOfConnectionIDs.Add(ID);
+                }
+            }
             Console.WriteLine("Please write the connection in the format of:");
             Console.WriteLine("A B C D   (which means the connection A->B->C->D");
             string s = Console.ReadLine();

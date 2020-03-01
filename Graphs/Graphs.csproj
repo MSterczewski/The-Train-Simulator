@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F1462C39-A35E-48FF-AED3-3817EAF2A430}</ProjectGuid>
+    <ProjectGuid>{44A1C698-3B82-4796-B3ED-7F22321910ED}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>ConnectionDBUpdater</RootNamespace>
-    <AssemblyName>ConnectionDBUpdater</AssemblyName>
+    <RootNamespace>Graphs</RootNamespace>
+    <AssemblyName>Graphs</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -36,9 +36,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Connection.cs" />
-    <Compile Include="ConnectionConsoleReader.cs" />
-    <Compile Include="ConnectionUpdater.cs" />
+    <Compile Include="Algo.cs" />
+    <Compile Include="Edge.cs" />
+    <Compile Include="Graph.cs" />
+    <Compile Include="Node.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
