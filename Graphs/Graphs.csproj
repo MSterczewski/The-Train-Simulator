@@ -41,5 +41,8 @@
     <Compile Include="Graph.cs" />
     <Compile Include="Node.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
