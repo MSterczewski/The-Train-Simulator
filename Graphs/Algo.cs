@@ -56,51 +56,78 @@ namespace Graphs
 
         //I will complete this in the evening
 
-        //public static List<Node> DijkstraAlgorithm(int sID, int dID, Graph g)
+        public static Graph PrepareGraphForDijkstra(Graph g)
+        {
+            //FIX maybe
+            Graph g2 = new Graph();
+            foreach(var n in g)
+            {
+                g2.AddNode(new DijkstraNode(n.Value, float.MaxValue));
+            }
+            return g2;
+        }
+
+        public static List<Node> DijkstraAlgorithm(int sID, int dID, Graph g)
+        {
+            Graph g2 = PrepareGraphForDijkstra(g);
+            DijkstraNode source = g2.GetNode(sID) as DijkstraNode;
+            DijkstraNode destination = g2.GetNode(dID) as DijkstraNode;
+            source.value = 0;
+            List<DijkstraNode> finalPath = new List<DijkstraNode>();
+            List<DijkstraNode> currentPath = new List<DijkstraNode>();
+            currentPath.Add(source);
+            finalPath = DijkstraReccursive(source, destination, currentPath, finalPath, g2);
+            return DijkstraConvertingLists(finalPath);
+        }
+
+        private static List<Node> DijkstraConvertingLists(List<DijkstraNode> list)
+        {
+            List<Node> newList = new List<Node>();
+            foreach(DijkstraNode d in list)
+            {
+                newList.Add(d as Node);
+            }
+            return newList;
+        }
+
+        //public static List<Station> DijkstraAlgorithm(int sID, int dID, List<Station> stations)
+        ////Non-recursive part of the Dijkstra Algorithm.
+        ////sID and dID means source/destination station's ID
+        ////returns the shortest path between sID and dID
         //{
-
-        //}
-        //public static List<Node> DijkstraReccursive(Node source,Node dest, List<Node> currentPath,List<Node> finalPath)
-        //{
-        //    if(source==dest)
-        //    {
-        //        //ending point
-        //        finalPath.Clear();
-        //        foreach (var r in currentPath)
-        //            finalPath.Add(r);
-        //        return finalPath;
-        //    }
-        //    foreach(var r in source.OutgoingEdges)
-        //    {
-        //        int alt = source.
-        //    }
-        //}
-
-        //    private static List<Station> DijkstraAlgorithmReccursive(Station source, Station dest, List<Station> currentPath, List<Station> finalPath)
-        //{
-        //    if (source == dest)
-        //    {
-        //        //ending point
-        //        finalPath.Clear();
-        //        foreach (var r in currentPath)
-        //            finalPath.Add(r);
-
-        //        return finalPath;
-        //    }
-        //    foreach (var v in source.neighbours)
-        //    {
-        //        int alt = source.value + v.Item2;
-        //        if (alt < v.Item1.value)
-        //        {
-        //            v.Item1.value = alt;
-
-        //            currentPath.Add(v.Item1);
-        //            finalPath = DijkstraAlgorithmReccursive(v.Item1, dest, currentPath, finalPath);
-        //            currentPath.RemoveAt(currentPath.Count - 1);
-        //        }
-        //    }
+        //    Dijkstra d = new Dijkstra(stations, sID, dID);
+        //    d.begStation.value = 0;
+        //    List<Station> finalPath = new List<Station>();
+        //    List<Station> currentPath = new List<Station>();
+        //    currentPath.Add(d.begStation);
+        //    finalPath = DijkstraAlgorithmReccursive(d.begStation, d.destStation, currentPath, finalPath);
         //    return finalPath;
         //}
+        private static List<DijkstraNode> DijkstraReccursive(DijkstraNode source, DijkstraNode dest, List<DijkstraNode> currentPath, List<DijkstraNode> finalPath,Graph g)
+        {
+            if (source == dest)
+            {
+                //ending point
+                finalPath.Clear();
+                foreach (var r in currentPath)
+                    finalPath.Add(r);
+                return finalPath;
+            }
+            foreach (var r in source.OutgoingEdges)
+            {
+                float alt = source.value + r.Weight;
+                DijkstraNode edgeDest = g.GetNode(r.Destination) as DijkstraNode;
+                if(alt<edgeDest.value)
+                {
+                    edgeDest.value = alt;
+                    currentPath.Add(edgeDest);
+                    finalPath = DijkstraReccursive(edgeDest, dest, currentPath, finalPath, g);
+                    currentPath.RemoveAt(currentPath.Count - 1);
+                }
+            }
+            return finalPath;//useless but whatever
+                            //maybe could throw exception when not found a path
+        }
 
     }
 }

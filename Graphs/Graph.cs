@@ -203,10 +203,25 @@ namespace Graphs
 
         public IEnumerator<KeyValuePair<int, Node>> GetEnumerator()
             => this.Nodes.GetEnumerator();
-    }
 
-    public class DijkstraGraph:Graph
-    {
-
+        public static void PrintGraph(Graph g)
+        {
+            StringBuilder s = new StringBuilder();
+            foreach(var v in g.Nodes)
+            {
+                s.Clear();
+                s.Append("Node ");
+                s.Append(v.Key);
+                s.Append(" with neighbours: ");
+                foreach(Edge e in v.Value.OutgoingEdges)
+                {
+                    s.Append(e.Destination);
+                    s.Append("(");
+                    s.Append(e.Color);
+                    s.Append(") ");
+                }
+                Console.WriteLine(s);
+            }
+        }
     }
 }

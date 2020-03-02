@@ -10,7 +10,7 @@ namespace Graphs
     [Serializable]
     public class Node
     {
-        public int Id { get; private set; }
+        public int Id { get; protected set; }
 
         
         public List<Edge> OutgoingEdges;
@@ -49,9 +49,18 @@ namespace Graphs
         //Idk if its good idea
     {
         public float value;
-        public DijkstraNode(int Id) : base(Id) { }
+        public DijkstraNode(int Id) : base(Id)
+        { 
+            value = 0;
+        }
         public DijkstraNode(int Id, float val):base(Id)
         {
+            value = val;
+        }
+        public DijkstraNode(Node n, float val):base(n.Id)
+        {
+            OutgoingEdges = n.OutgoingEdges;
+            //Id = n.Id;
             value = val;
         }
     }
