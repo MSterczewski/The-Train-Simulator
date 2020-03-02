@@ -117,17 +117,49 @@ namespace Graphs
          *          when an invalid operation will throw the exception for you.
          *          
          */
+        public bool ContainsNode(Node N)
+        {
+            return Nodes.ContainsKey(N.Id);
+        }
+        public bool ContainsNode(int n)
+        {
+            return Nodes.ContainsKey(n);
+        }
+        private bool isEdgeViable(Edge e)
+        {
+            int found = 0;
+            foreach(var n in Nodes)
+            {
+                if (n.Value.Id == e.Source) found++;
+                if (n.Value.Id == e.Destination) found++;
+                if (found == 2) return true;
+            }
+            return false;
+        }
+
 
         public void AddNode(Node N)
-        { this.Nodes[N.Id] = N; }
+        {
+            if (ContainsNode(N))
+                throw new ExistingStationException(N.Id);
+
+            this.Nodes[N.Id] = N;
+        }
 
 
         public Node GetNode(int NodeId)
-            => this.Nodes[NodeId];
+        {
+            if (ContainsNode(NodeId) == true)
+            {
+                return this.Nodes[NodeId];
+            }
+            else throw new NodeNotInGraphException(NodeId);
+        }
 
 
         public void AddEdge(Edge E, bool Bidirectional = true)
         {
+            if (isEdgeViable(E) == false) throw new EdgeNotViableException(E);
             this.Nodes[E.Source].AddNeighbour(E.Destination, E.Color, E.Weight);
             this.Edges++;
 
