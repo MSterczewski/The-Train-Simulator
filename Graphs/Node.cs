@@ -44,4 +44,15 @@ namespace Graphs
             this.OutgoingEdges.Add(e);
         }
     }
+
+    public class DijkstraNode : Node
+        //Idk if its good idea
+    {
+        public float value;
+        public DijkstraNode(int Id) : base(Id) { }
+        public DijkstraNode(int Id, float val):base(Id)
+        {
+            value = val;
+        }
+    }
 }

@@ -1,0 +1,10 @@
+C:\Users\Mateus\Desktop\Programowanie\TrainSimulator\ConnectionSearcher\bin\Debug\ConnectionSearcher.exe.config
+C:\Users\Mateus\Desktop\Programowanie\TrainSimulator\ConnectionSearcher\bin\Debug\ConnectionSearcher.exe
+C:\Users\Mateus\Desktop\Programowanie\TrainSimulator\ConnectionSearcher\bin\Debug\ConnectionSearcher.pdb
+C:\Users\Mateus\Desktop\Programowanie\TrainSimulator\ConnectionSearcher\bin\Debug\ConnectionDBUpdater.exe
+C:\Users\Mateus\Desktop\Programowanie\TrainSimulator\ConnectionSearcher\bin\Debug\ConnectionDBUpdater.pdb
+C:\Users\Mateus\Desktop\Programowanie\TrainSimulator\ConnectionSearcher\bin\Debug\ConnectionDBUpdater.exe.config
+C:\Users\Mateus\Desktop\Programowanie\TrainSimulator\ConnectionSearcher\obj\Debug\ConnectionSearcher.csprojAssemblyReference.cache
+C:\Users\Mateus\Desktop\Programowanie\TrainSimulator\ConnectionSearcher\obj\Debug\ConnectionSearcher.csproj.CopyComplete
+C:\Users\Mateus\Desktop\Programowanie\TrainSimulator\ConnectionSearcher\obj\Debug\ConnectionSearcher.exe
+C:\Users\Mateus\Desktop\Programowanie\TrainSimulator\ConnectionSearcher\obj\Debug\ConnectionSearcher.pdb

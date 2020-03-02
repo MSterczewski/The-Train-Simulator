@@ -1,0 +1,6 @@
+C:\Users\Mateus\Desktop\Programowanie\TrainSimulator\Graphs\obj\Debug\Graphs.csprojAssemblyReference.cache
+C:\Users\Mateus\Desktop\Programowanie\TrainSimulator\Graphs\bin\Debug\Graphs.exe.config
+C:\Users\Mateus\Desktop\Programowanie\TrainSimulator\Graphs\bin\Debug\Graphs.exe
+C:\Users\Mateus\Desktop\Programowanie\TrainSimulator\Graphs\bin\Debug\Graphs.pdb
+C:\Users\Mateus\Desktop\Programowanie\TrainSimulator\Graphs\obj\Debug\Graphs.exe
+C:\Users\Mateus\Desktop\Programowanie\TrainSimulator\Graphs\obj\Debug\Graphs.pdb

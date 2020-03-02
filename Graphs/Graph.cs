@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using System.IO.Compression;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Runtime.Serialization;
 
 namespace Graphs
 {
@@ -63,6 +67,12 @@ namespace Graphs
          * 
          */
 
+
+            /*
+             * So boss, this part idk what it's for
+             * It hasn't been working :/
+             * And idk if we need a graph represented in strings
+             * */
         public static Graph FromString(string Representation)
         {
             byte[] raw = Convert.FromBase64String(Representation);
@@ -79,7 +89,7 @@ namespace Graphs
         }
 
 
-        public static Graph FromFile(string Path)
+        public static Graph FromFileOld(string Path)
         {
             var file = new StreamReader(Path);
             string s64 = file.ReadToEnd();
@@ -102,7 +112,7 @@ namespace Graphs
         }
 
 
-        public void SaveToFile(string Path)
+        public void SaveToFileOld(string Path)
         {
             var file = File.Open(Path, FileMode.Create);
 
@@ -110,6 +120,26 @@ namespace Graphs
 
             file.Write(data, 0, data.Length);
             file.Close();
+        }
+
+        /*
+         * My suggestion for fix here
+         */
+        public void SaveToFile(string path)
+        {
+            IFormatter formatter = new BinaryFormatter();
+            Stream stream = new FileStream(path, FileMode.Create, FileAccess.Write);
+            formatter.Serialize(stream, this);
+            stream.Close();
+        }
+
+        public static Graph FromFile(string path)
+        {
+            IFormatter formatter = new BinaryFormatter();
+            Stream stream = new FileStream(path, FileMode.Open, FileAccess.Read);
+            Graph g = (Graph)formatter.Deserialize(stream);
+            stream.Close();
+            return g;
         }
 
         /*
@@ -173,5 +203,10 @@ namespace Graphs
 
         public IEnumerator<KeyValuePair<int, Node>> GetEnumerator()
             => this.Nodes.GetEnumerator();
+    }
+
+    public class DijkstraGraph:Graph
+    {
+
     }
 }

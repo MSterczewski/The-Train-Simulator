@@ -53,5 +53,54 @@ namespace Graphs
             Path.Reverse();
             return Path;
         }
+
+        //I will complete this in the evening
+
+        //public static List<Node> DijkstraAlgorithm(int sID, int dID, Graph g)
+        //{
+
+        //}
+        //public static List<Node> DijkstraReccursive(Node source,Node dest, List<Node> currentPath,List<Node> finalPath)
+        //{
+        //    if(source==dest)
+        //    {
+        //        //ending point
+        //        finalPath.Clear();
+        //        foreach (var r in currentPath)
+        //            finalPath.Add(r);
+        //        return finalPath;
+        //    }
+        //    foreach(var r in source.OutgoingEdges)
+        //    {
+        //        int alt = source.
+        //    }
+        //}
+
+        //    private static List<Station> DijkstraAlgorithmReccursive(Station source, Station dest, List<Station> currentPath, List<Station> finalPath)
+        //{
+        //    if (source == dest)
+        //    {
+        //        //ending point
+        //        finalPath.Clear();
+        //        foreach (var r in currentPath)
+        //            finalPath.Add(r);
+
+        //        return finalPath;
+        //    }
+        //    foreach (var v in source.neighbours)
+        //    {
+        //        int alt = source.value + v.Item2;
+        //        if (alt < v.Item1.value)
+        //        {
+        //            v.Item1.value = alt;
+
+        //            currentPath.Add(v.Item1);
+        //            finalPath = DijkstraAlgorithmReccursive(v.Item1, dest, currentPath, finalPath);
+        //            currentPath.RemoveAt(currentPath.Count - 1);
+        //        }
+        //    }
+        //    return finalPath;
+        //}
+
     }
 }
