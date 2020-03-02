@@ -25,9 +25,9 @@ namespace Graphs
 
             Visited.Add(Start);
 
-            foreach (var kvp in G.GetNode(Start).GetNeighbours())
+            foreach (Edge e in G.GetNode(Start).OutgoingEdges)
             {
-                int neigId = kvp.Value.Destination;
+                int neigId = e.Destination;
                 if (Visited.Contains(neigId))
                     continue;
 

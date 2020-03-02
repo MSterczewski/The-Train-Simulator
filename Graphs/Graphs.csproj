@@ -43,9 +43,12 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
+<<<<<<< HEAD
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.IO.Log" />
+=======
+>>>>>>> refs/remotes/origin/master
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
