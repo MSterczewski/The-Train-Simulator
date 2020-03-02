@@ -46,17 +46,9 @@ namespace Graphs
     }
 
     public class DijkstraNode : Node
-        //Idk if its good idea
+        //Subclass just for Dijkstra Algorithm
     {
         public float value;
-        public DijkstraNode(int Id) : base(Id)
-        { 
-            value = 0;
-        }
-        public DijkstraNode(int Id, float val):base(Id)
-        {
-            value = val;
-        }
         public DijkstraNode(Node n, float val):base(n.Id)
         {
             OutgoingEdges = n.OutgoingEdges;

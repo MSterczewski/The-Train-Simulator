@@ -54,11 +54,10 @@ namespace Graphs
             return Path;
         }
 
-        //I will complete this in the evening
 
-        public static Graph PrepareGraphForDijkstra(Graph g)
+        //DIJKSTRA
+        private static Graph PrepareGraphForDijkstra(Graph g)
         {
-            //FIX maybe
             Graph g2 = new Graph();
             foreach(var n in g)
             {
@@ -66,7 +65,6 @@ namespace Graphs
             }
             return g2;
         }
-
         public static List<Node> DijkstraAlgorithm(int sID, int dID, Graph g)
         {
             Graph g2 = PrepareGraphForDijkstra(g);
@@ -79,7 +77,6 @@ namespace Graphs
             finalPath = DijkstraReccursive(source, destination, currentPath, finalPath, g2);
             return DijkstraConvertingLists(finalPath);
         }
-
         private static List<Node> DijkstraConvertingLists(List<DijkstraNode> list)
         {
             List<Node> newList = new List<Node>();
@@ -89,20 +86,6 @@ namespace Graphs
             }
             return newList;
         }
-
-        //public static List<Station> DijkstraAlgorithm(int sID, int dID, List<Station> stations)
-        ////Non-recursive part of the Dijkstra Algorithm.
-        ////sID and dID means source/destination station's ID
-        ////returns the shortest path between sID and dID
-        //{
-        //    Dijkstra d = new Dijkstra(stations, sID, dID);
-        //    d.begStation.value = 0;
-        //    List<Station> finalPath = new List<Station>();
-        //    List<Station> currentPath = new List<Station>();
-        //    currentPath.Add(d.begStation);
-        //    finalPath = DijkstraAlgorithmReccursive(d.begStation, d.destStation, currentPath, finalPath);
-        //    return finalPath;
-        //}
         private static List<DijkstraNode> DijkstraReccursive(DijkstraNode source, DijkstraNode dest, List<DijkstraNode> currentPath, List<DijkstraNode> finalPath,Graph g)
         {
             if (source == dest)

@@ -45,14 +45,26 @@ namespace Graphs
             else
                 g = Graph.FromFile("graph.txt");
 
+
+            //Dijkstra - WORKING :-------------------)
+
             var v = Algo.DijkstraAlgorithm(8, 19, g);
             foreach(var p in v)
             {
                 Console.WriteLine(p.Id);
             }
 
+
+            //printing
+
+
             //Graph.PrintGraph(g);
             //Graph.PrintGraph( Algo.PrepareGraphForDijkstra(g));
+
+
+
+            //YOur old tests
+
             //Console.WriteLine("Edges: {0}", g.Edges);
 
             //var p = Algo.DepthSearch(g, 8, 19);
