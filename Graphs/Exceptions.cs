@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Graphs
 {
-    class ExistingStationException:Exception
+    public class ExistingStationException:Exception
     {
         int stationID;
         public ExistingStationException(int ID)
@@ -14,7 +14,7 @@ namespace Graphs
             stationID = ID;
         }
     }
-    class NodeNotInGraphException:Exception
+    public class NodeNotInGraphException:Exception
     {
         int stationID;
         public NodeNotInGraphException(int ID)
@@ -22,7 +22,7 @@ namespace Graphs
             stationID = ID;
         }
     }
-    class EdgeNotViableException:Exception
+    public class EdgeNotViableException:Exception
     {
         Edge edge;
         public EdgeNotViableException(Edge e)

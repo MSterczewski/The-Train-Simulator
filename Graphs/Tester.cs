@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace Graphs
 {
@@ -11,7 +12,7 @@ namespace Graphs
         public static void Main(string[] args)
         {
             string path = "../../../connectionDB.txt";
-            bool create = false;
+            bool create = true;
             Graph g = null;
 
             if (create)
@@ -44,7 +45,11 @@ namespace Graphs
             }
 
             else
+            {
+                if (File.Exists(path) == false) throw new FileNotFoundException();
                 g = Graph.FromFile(path);
+            }
+                
 
 
             //Dijkstra - WORKING :-------------------)
@@ -66,16 +71,16 @@ namespace Graphs
 
             //YOur old tests
 
-            //Console.WriteLine("Edges: {0}", g.Edges);
+            Console.WriteLine("Edges: {0}", g.Edges);
 
-            //var p = Algo.DepthSearch(g, 8, 19);
-            //foreach (int n in p)
-            //    Console.WriteLine(n.ToString());
+            var p = Algo.DepthSearch(g, 8, 19);
+            foreach (int n in p)
+                Console.WriteLine(n.ToString());
 
-            //Console.WriteLine("End");
+            Console.WriteLine("End");
 
             if (create)
-                Graph.SaveToFile(path,g);
+                g.SaveToFile(path);
         }
     }
 }

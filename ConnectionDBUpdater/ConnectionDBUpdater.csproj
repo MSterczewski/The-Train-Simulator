@@ -36,9 +36,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Connection.cs" />
-    <Compile Include="ConnectionConsoleReader.cs" />
-    <Compile Include="ConnectionUpdater.cs" />
     <Compile Include="DatabaseWriterUI.cs" />
   </ItemGroup>
   <ItemGroup>

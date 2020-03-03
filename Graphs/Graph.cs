@@ -37,10 +37,12 @@ namespace Graphs
         // non-directional graphs - divide by two
         public int Edges { get; private set; } = 0;
 
+        public List<int> colors;
 
         public Graph()
         {
             this.Nodes = new Dictionary<int, Node>();
+            this.colors = new List<int>();
         }
 
 
@@ -52,6 +54,11 @@ namespace Graphs
             {
                 this.Nodes[N.Id] = N;
                 this.Edges += N.Degree;
+                foreach(Edge e in N.OutgoingEdges)
+                {
+                    if (colors.Contains(e.Color) == false)
+                        colors.Add(e.Color);
+                }
             }
         }
 
@@ -66,13 +73,6 @@ namespace Graphs
          * Implemented with streams on top of streams.
          * 
          */
-
-
-            /*
-             * So boss, this part idk what it's for
-             * It hasn't been working :/
-             * And idk if we need a graph represented in strings
-             * */
         public static Graph FromString(string Representation)
         {
             byte[] raw = Convert.FromBase64String(Representation);
@@ -89,7 +89,7 @@ namespace Graphs
         }
 
 
-        public static Graph FromFileOld(string Path)
+        public static Graph FromFile(string Path)
         {
             var file = new StreamReader(Path);
             string s64 = file.ReadToEnd();
@@ -102,19 +102,22 @@ namespace Graphs
         public override string ToString()
         {
             var mems = new MemoryStream();
-            var defs = new DeflateStream(mems, CompressionLevel.Optimal);
+            var defs = new DeflateStream(mems, CompressionLevel.Optimal,true);
+            
 
             BinaryFormatter bf = new BinaryFormatter();
             bf.Serialize(defs, this);
-
+            defs.Close();
+            //defs.Flush();
             byte[] bytes = mems.ToArray();
+            mems.Close();
             return Convert.ToBase64String(bytes);
         }
 
 
-        public void SaveToFileOld(string Path)
+        public void SaveToFile(string Path)
         {
-            var file = File.Open(Path, FileMode.Create);
+            var file = File.Open(Path, FileMode.Create,FileAccess.ReadWrite);
 
             byte[] data = System.Text.Encoding.ASCII.GetBytes(this.ToString());
 
@@ -125,22 +128,6 @@ namespace Graphs
         /*
          * My suggestion for fix here
          */
-        public static void SaveToFile(string path,Graph g)
-        {
-            IFormatter formatter = new BinaryFormatter();
-            Stream stream = new FileStream(path, FileMode.Create, FileAccess.Write);
-            formatter.Serialize(stream, g);
-            stream.Close();
-        }
-
-        public static Graph FromFile(string path)
-        {
-            IFormatter formatter = new BinaryFormatter();
-            Stream stream = new FileStream(path, FileMode.Open, FileAccess.Read);
-            Graph g = (Graph)formatter.Deserialize(stream);
-            stream.Close();
-            return g;
-        }
 
         /*
          * Mindset: Don't check for possible exceptions only to throw them manually
@@ -190,6 +177,7 @@ namespace Graphs
         public void AddEdge(Edge E, bool Bidirectional = true)
         {
             if (isEdgeViable(E) == false) throw new EdgeNotViableException(E);
+            if (colors.Contains(E.Color) == false) colors.Add(E.Color);
             this.Nodes[E.Source].AddNeighbour(E.Destination, E.Color, E.Weight);
             this.Edges++;
 
