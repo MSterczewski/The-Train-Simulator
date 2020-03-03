@@ -12,6 +12,7 @@ namespace ConnectionDBUpdater
     [Serializable]
     public class Connection
     {
+        //TO REMOVE
         public int connectionID;//stores the ID of connection
         public int[] stations;//stores stationsIDs
         public int[] connectionValues;

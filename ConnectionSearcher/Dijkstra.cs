@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConnectionSearcher
 {
+    //FOR DELETE
     public class Dijkstra
     {
         List<Station> stationWithValues;

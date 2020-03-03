@@ -11,12 +11,12 @@ namespace ConnectionDBUpdater
 {
     class ConnectionUpdater
     {
-        public static int Main()
-        {
-            string path = "../../../connectionDB.txt";
-            ContinueWorking(path);
-            return 0;
-        }
+        //public static int Main()
+        //{
+        //    string path = "../../../connectionDB.txt";
+        //    ContinueWorking(path);
+        //    return 0;
+        //}
         private static int PrintMenu()
         //Function that prints a menu on the console
         //Prompts the user to select an option

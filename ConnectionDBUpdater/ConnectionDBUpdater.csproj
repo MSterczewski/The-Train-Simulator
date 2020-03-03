@@ -39,6 +39,13 @@
     <Compile Include="Connection.cs" />
     <Compile Include="ConnectionConsoleReader.cs" />
     <Compile Include="ConnectionUpdater.cs" />
+    <Compile Include="DatabaseWriterUI.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Graphs\Graphs.csproj">
+      <Project>{44a1c698-3b82-4796-b3ed-7f22321910ed}</Project>
+      <Name>Graphs</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

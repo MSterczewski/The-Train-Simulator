@@ -8,11 +8,11 @@ namespace ConnectionDBUpdater
 {
     static class ConnectionConsoleReader
     {
+        //TO REMOVE
         private static int nextID = 1;
         private static List<int> usedIDs = new List<int>();
         public static Connection ReadConnectionFromConsole()
         {
-
             return Connection.ReadConnectionFromConsole(ref nextID,ref usedIDs);
         }
     }

@@ -125,11 +125,11 @@ namespace Graphs
         /*
          * My suggestion for fix here
          */
-        public void SaveToFile(string path)
+        public static void SaveToFile(string path,Graph g)
         {
             IFormatter formatter = new BinaryFormatter();
             Stream stream = new FileStream(path, FileMode.Create, FileAccess.Write);
-            formatter.Serialize(stream, this);
+            formatter.Serialize(stream, g);
             stream.Close();
         }
 

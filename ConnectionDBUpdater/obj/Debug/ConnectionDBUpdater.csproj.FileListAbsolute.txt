@@ -4,3 +4,7 @@ C:\Users\Mateus\Desktop\Programowanie\TrainSimulator\ConnectionDBUpdater\bin\Deb
 C:\Users\Mateus\Desktop\Programowanie\TrainSimulator\ConnectionDBUpdater\obj\Debug\ConnectionDBUpdater.csprojAssemblyReference.cache
 C:\Users\Mateus\Desktop\Programowanie\TrainSimulator\ConnectionDBUpdater\obj\Debug\ConnectionDBUpdater.exe
 C:\Users\Mateus\Desktop\Programowanie\TrainSimulator\ConnectionDBUpdater\obj\Debug\ConnectionDBUpdater.pdb
+C:\Users\Mateus\Desktop\Programowanie\TrainSimulator\ConnectionDBUpdater\bin\Debug\Graphs.exe
+C:\Users\Mateus\Desktop\Programowanie\TrainSimulator\ConnectionDBUpdater\bin\Debug\Graphs.pdb
+C:\Users\Mateus\Desktop\Programowanie\TrainSimulator\ConnectionDBUpdater\bin\Debug\Graphs.exe.config
+C:\Users\Mateus\Desktop\Programowanie\TrainSimulator\ConnectionDBUpdater\obj\Debug\ConnectionDBUpdater.csproj.CopyComplete

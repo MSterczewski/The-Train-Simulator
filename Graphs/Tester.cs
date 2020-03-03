@@ -10,6 +10,7 @@ namespace Graphs
     {
         public static void Main(string[] args)
         {
+            string path = "../../../connectionDB.txt";
             bool create = false;
             Graph g = null;
 
@@ -43,16 +44,16 @@ namespace Graphs
             }
 
             else
-                g = Graph.FromFile("graph.txt");
+                g = Graph.FromFile(path);
 
 
             //Dijkstra - WORKING :-------------------)
 
-            var v = Algo.DijkstraAlgorithm(8, 19, g);
-            foreach(var p in v)
-            {
-                Console.WriteLine(p.Id);
-            }
+            //var v = Algo.DijkstraAlgorithm(8, 19, g);
+            //foreach(var p in v)
+            //{
+            //    Console.WriteLine(p.Id);
+            //}
 
 
             //printing
@@ -73,8 +74,8 @@ namespace Graphs
 
             //Console.WriteLine("End");
 
-            //if (create)
-            //    g.SaveToFile("graph.txt");
+            if (create)
+                Graph.SaveToFile(path,g);
         }
     }
 }
