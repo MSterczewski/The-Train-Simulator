@@ -9,7 +9,7 @@ namespace Graphs
     [Serializable]
     public class Edge
     {
-        public int Source;//NOTE - maybe change for Node?
+        public int Source;
         public int Destination;
 
         public int Color;

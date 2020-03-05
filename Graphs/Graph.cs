@@ -124,11 +124,6 @@ namespace Graphs
             file.Write(data, 0, data.Length);
             file.Close();
         }
-
-        /*
-         * My suggestion for fix here
-         */
-
         /*
          * Mindset: Don't check for possible exceptions only to throw them manually
          *          when an invalid operation will throw the exception for you.

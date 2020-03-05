@@ -8,54 +8,6 @@ namespace Graphs
 {
     public static class Algo
     {
-        /*
-         * 
-         * Experimental class of experimental functions.
-         *           Do not expect quality.
-         * 
-
-         */
-        private static bool DepthSearchR(Graph G, int Start, int End, List<int> Path, List<int> Visited)
-        {
-            if (Start == End)
-            {
-                Path.Add(Start);
-                return true;
-            }
-
-            Visited.Add(Start);
-
-            foreach (Edge e in G.GetNode(Start).OutgoingEdges)
-            {
-                int neigId = e.Destination;
-                if (Visited.Contains(neigId))
-                    continue;
-
-                bool found = DepthSearchR(G, neigId, End, Path, Visited);
-
-                if (found)
-                {
-                    Path.Add(Start);
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
-        public static List<int> DepthSearch(Graph G, int Start, int End)
-        {
-            var Path = new List<int>();
-            var Visited = new List<int>();
-
-            DepthSearchR(G, Start, End, Path, Visited);
-
-            Path.Reverse();
-            return Path;
-        }
-
-
-        //DIJKSTRA
         private static Graph PrepareGraphForDijkstra(Graph g)
         {
             Graph g2 = new Graph();
@@ -65,6 +17,13 @@ namespace Graphs
             }
             return g2;
         }
+        /// <summary>
+        /// Function which realises Dijkstra algorith.
+        /// </summary>
+        /// <param name="sID">source ID</param>
+        /// <param name="dID">destination ID</param>
+        /// <param name="g">Graph</param>
+        /// <returns>the path from source to destination</returns>
         public static List<Node> DijkstraAlgorithm(int sID, int dID, Graph g)
         {
             Graph g2 = PrepareGraphForDijkstra(g);

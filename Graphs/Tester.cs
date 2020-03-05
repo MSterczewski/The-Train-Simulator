@@ -43,41 +43,18 @@ namespace Graphs
                 for (int i = 0; i < line4.Length - 1; ++i)
                     g.AddEdge(new Edge(line4[i], line4[i + 1], Color: 4));
             }
-
             else
             {
                 if (File.Exists(path) == false) throw new FileNotFoundException();
                 g = Graph.FromFile(path);
             }
-                
+            //Dijkstra - WORKING :-)
 
-
-            //Dijkstra - WORKING :-------------------)
-
-            //var v = Algo.DijkstraAlgorithm(8, 19, g);
-            //foreach(var p in v)
-            //{
-            //    Console.WriteLine(p.Id);
-            //}
-
-
-            //printing
-
-
-            //Graph.PrintGraph(g);
-            //Graph.PrintGraph( Algo.PrepareGraphForDijkstra(g));
-
-
-
-            //YOur old tests
-
-            Console.WriteLine("Edges: {0}", g.Edges);
-
-            var p = Algo.DepthSearch(g, 8, 19);
-            foreach (int n in p)
-                Console.WriteLine(n.ToString());
-
-            Console.WriteLine("End");
+            var v = Algo.DijkstraAlgorithm(8, 19, g);
+            foreach (var p in v)
+            {
+                Console.WriteLine(p.Id);
+            }
 
             if (create)
                 g.SaveToFile(path);

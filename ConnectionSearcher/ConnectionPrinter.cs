@@ -7,9 +7,14 @@ using System.Threading.Tasks;
 namespace ConnectionSearcher
 {
     public static class ConnectionPrinter
-    //A class for printing the result of Dijkstra Algorithm
-    //Prints the shortest path from source to destination
     {
+        /// <summary>
+        /// This function outputs for the console found path from sID to dID
+        /// It also differentiate edge colors
+        /// </summary>
+        /// <param name="lists"> list of list of stations and the color of which they are connected</param>
+        /// <param name="sID">source ID</param>
+        /// <param name="dID">destination ID</param>
         public static void PrintTheConnection(List<(List<Graphs.Node>, int)> lists, int sID, int dID)
         {
             Console.WriteLine("Connection from: " + sID + " to " + dID);
@@ -29,7 +34,6 @@ namespace ConnectionSearcher
                 Console.WriteLine(sb);
             }
         }
-
         public static void ReadFromTo(out int from, out int to)
         {
             Console.WriteLine("Please write from which station do you want to travel:");
@@ -37,19 +41,15 @@ namespace ConnectionSearcher
             Console.WriteLine("Please write to which station do you want to travel:");
             to = int.Parse(Console.ReadLine());
         }
-
-
         /// <summary>
-        /// FIXXXXXXXXXXXXXXXXX
+        /// Splits the stations by the available colors between them
         /// </summary>
         /// <param name="stations"></param>
-        /// <returns></returns>
+        /// <returns>read description of PrinTheConnection parameters</returns>
         public static List<(List<Graphs.Node>, int)> AnalyseTheResult(List<Graphs.Node> stations)
-        //The function that splits the list of stations into the list of lists of stations where stations are on the same line
         {
             List<(List<Graphs.Node>, int)> lists = new List<(List<Graphs.Node>, int)>();
             int lastConnection = -1;
-            //ValueTuple<Graphs.Node, int, int> toSave = new ValueTuple<Graphs.Node, int, int>();
             Graphs.Edge toSave = new Graphs.Edge(0, 0);
             bool toSaveFlag;
             bool toSaveFlag2;
