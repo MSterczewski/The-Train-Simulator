@@ -36,16 +36,18 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConnectionSearcher.cs" />
+    <Compile Include="ConnectionPrinter.cs" />
     <Compile Include="ConnectionSearcherDatabaseReader.cs" />
-    <Compile Include="Dijkstra.cs" />
     <Compile Include="MainClass.cs" />
-    <Compile Include="Station.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ConnectionDBUpdater\ConnectionDBUpdater.csproj">
       <Project>{f1462c39-a35e-48ff-aed3-3817eaf2a430}</Project>
       <Name>ConnectionDBUpdater</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Graphs\Graphs.csproj">
+      <Project>{44a1c698-3b82-4796-b3ed-7f22321910ed}</Project>
+      <Name>Graphs</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

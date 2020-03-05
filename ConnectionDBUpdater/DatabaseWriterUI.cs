@@ -42,13 +42,13 @@ namespace ConnectionDBUpdater
                 int p = int.Parse(s);
                 if (p <= 0 || p > 4) throw new InvalidOptionException(p);
             }
-            catch(InvalidOptionException)
+            catch (InvalidOptionException)
             {
                 Console.WriteLine("Your option was invalid");
                 Console.WriteLine("Please select an option from 1 to 4");
                 return PrintMenu(false, true);
             }
-            catch(FormatException)
+            catch (FormatException)
             {
                 Console.WriteLine("Your option was invalid");
                 Console.WriteLine("Please select an option from 1 to 4");
@@ -109,7 +109,7 @@ namespace ConnectionDBUpdater
             while (g.colors.Contains(id) == true) id++;
             return id;
         }
-        private static void AddConnectionToGraphID(string path,Graphs.Graph g,out int ID)
+        private static void AddConnectionToGraphID(string path, Graphs.Graph g, out int ID)
         {
             int nextLineID = TellNextLineID(g);
             Console.WriteLine("Suggested connection ID: " + nextLineID);
@@ -119,7 +119,7 @@ namespace ConnectionDBUpdater
             {
                 ID = int.Parse(line);
             }
-            catch(FormatException)
+            catch (FormatException)
             {
                 Console.WriteLine("Input was not an int!");
                 Console.WriteLine("Please try again");
@@ -136,11 +136,11 @@ namespace ConnectionDBUpdater
                 Console.WriteLine("Press any key to continue...");
                 Console.ReadKey();
                 Console.Clear();
-                AddConnectionToGraphID(path, g,out ID);
+                AddConnectionToGraphID(path, g, out ID);
                 return;
             }
         }
-        private static void AddConnectionToGraphStations(string path,Graphs.Graph g,out List<int> stations)
+        private static void AddConnectionToGraphStations(string path, Graphs.Graph g, out List<int> stations)
         {
             Console.WriteLine("Please write the connection in the format of:");
             Console.WriteLine("A B C D   (which means the connection A->B->C->D");
@@ -154,7 +154,7 @@ namespace ConnectionDBUpdater
                     stations.Add(i);
                 }
             }
-            catch(FormatException)
+            catch (FormatException)
             {
                 Console.WriteLine("Desired input is \"A B C D\" where A, B, C, D are integers");
                 Console.WriteLine("Please try again");
@@ -191,7 +191,7 @@ namespace ConnectionDBUpdater
                 return;
             }
         }
-        private static void AddConnecitonToGraphBad(string path,Graphs.Graph g,int sc,int ec)
+        private static void AddConnecitonToGraphBadCount(string path, Graphs.Graph g, int sc, int ec)
         {
             Console.WriteLine("The number of stations and connection values was incorrect.");
             Console.WriteLine("\tstation count: " + sc);
@@ -212,51 +212,25 @@ namespace ConnectionDBUpdater
             AddConnectionToGraphID(path, g, out ID);
             AddConnectionToGraphStations(path, g, out stations);
             AddConnectionToGraphCosts(path, g, out edgeValues);
-            if(stations.Count-1!=edgeValues.Count)
+            if (stations.Count - 1 != edgeValues.Count)
             {
-                AddConnecitonToGraphBad(path, g, stations.Count, edgeValues.Count);
+                AddConnecitonToGraphBadCount(path, g, stations.Count, edgeValues.Count);
                 return;
             }
             AddConnectionToGraph(g, stations, edgeValues, ID);
         }
         private static void AddConnectionToGraph(Graphs.Graph g, List<int> stations, List<int> edgeValues, int connectionID)
         {
-            try
+            foreach(int ID in stations)
             {
-                Graphs.Node n = new Graphs.Node(stations[0]);
-                n.AddNeighbour(stations[1], connectionID, edgeValues[0]);
-                g.AddNode(n);
-            }
-            catch (Graphs.ExistingStationException)
-            {
-                g.GetNode(stations[0]).AddNeighbour(stations[1], connectionID, edgeValues[0]);
-            }
-            for (int i = 1; i < stations.Count - 1; i++)
-            {
-                try
+                if(g.ContainsNode(ID)==false)
                 {
-                    Graphs.Node n = new Graphs.Node(stations[i]);
-                    n.AddNeighbour(stations[i + 1], connectionID, edgeValues[i]);
-                    n.AddNeighbour(stations[i - 1], connectionID, edgeValues[i - 1]);
-                    g.AddNode(n);
-                }
-                catch (Graphs.ExistingStationException)
-                {
-                    Graphs.Node n = g.GetNode(stations[i]);
-                    n.AddNeighbour(stations[i + 1], connectionID, edgeValues[i]);
-                    n.AddNeighbour(stations[i - 1], connectionID, edgeValues[i - 1]);
+                    g.AddNode(new Graphs.Node(ID));
                 }
             }
-            int lastIndex = stations.Count - 1;
-            try
+            for(int i=0;i<edgeValues.Count;i++)
             {
-                Graphs.Node n = new Graphs.Node(stations[lastIndex]);
-                n.AddNeighbour(stations[lastIndex - 1], connectionID, edgeValues[lastIndex - 1]);
-                g.AddNode(n);
-            }
-            catch (Graphs.ExistingStationException)
-            {
-                g.GetNode(stations[lastIndex]).AddNeighbour(stations[lastIndex - 1], connectionID, edgeValues[lastIndex - 1]);
+                g.AddEdge(new Graphs.Edge(stations[i], stations[i + 1], connectionID, edgeValues[i]));
             }
         }
     }

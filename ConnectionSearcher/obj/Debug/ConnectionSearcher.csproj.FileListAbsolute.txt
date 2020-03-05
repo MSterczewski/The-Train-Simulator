@@ -8,3 +8,6 @@ C:\Users\Mateus\Desktop\Programowanie\TrainSimulator\ConnectionSearcher\obj\Debu
 C:\Users\Mateus\Desktop\Programowanie\TrainSimulator\ConnectionSearcher\obj\Debug\ConnectionSearcher.csproj.CopyComplete
 C:\Users\Mateus\Desktop\Programowanie\TrainSimulator\ConnectionSearcher\obj\Debug\ConnectionSearcher.exe
 C:\Users\Mateus\Desktop\Programowanie\TrainSimulator\ConnectionSearcher\obj\Debug\ConnectionSearcher.pdb
+C:\Users\Mateus\Desktop\Programowanie\TrainSimulator\ConnectionSearcher\bin\Debug\Graphs.exe
+C:\Users\Mateus\Desktop\Programowanie\TrainSimulator\ConnectionSearcher\bin\Debug\Graphs.pdb
+C:\Users\Mateus\Desktop\Programowanie\TrainSimulator\ConnectionSearcher\bin\Debug\Graphs.exe.config

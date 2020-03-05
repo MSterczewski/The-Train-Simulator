@@ -9,19 +9,21 @@ namespace ConnectionSearcher
     class MainClass
     {
         public static int Main()
-        {
-            List<Station> stations = ConnectionSearcherDatabaseReader.ReadConnections("../../../connectionDB.txt");
-            //ConnectionSearcherDatabaseReader.ReadConnections("../../../connectionDB.txt", out stations);
+        { 
+            //Graph init
+            string path = "../../../connectionDB.txt";
+            Graphs.Graph g = ConnectionSearcherDatabaseReader.ReadGraphFromDB(path);
 
-            List<Station> final;
-            final = Dijkstra.DijkstraAlgorithm(1, 6, stations);
+            //Input and finding the path
+            int from, to;
+            ConnectionPrinter.ReadFromTo(out from, out to);
+            List<Graphs.Node> stations = Graphs.Algo.DijkstraAlgorithm(from, to, g);
 
-            var p = Dijkstra.AnalyseTheResult(final);
-            ConnectionSearcherPrinter.PrintTheConnection(p, 1, 6);
+            //Printing
+            var p = ConnectionPrinter.AnalyseTheResult(stations);
+            ConnectionPrinter.PrintTheConnection(p, from, to);
             return 0;
         }
-
-
     }
 
 }
